@@ -40,7 +40,7 @@ $(REGRESSIONS):
 ifeq ($(TRAVIS),true)
 	@echo "travis_fold:start:$@"
 endif
-	cd test_cases/$@ && $(MAKE)
+	cd test_cases/$@ && $(MAKE) WAVES=1
 ifeq ($(TRAVIS),true)
 	@echo "travis_fold:end:$@"
 endif
@@ -51,4 +51,4 @@ clean:
 	$(foreach TEST, $(REGRESSIONS), $(MAKE) -C test_cases/$(TEST) clean;)
 
 regression:
-	$(foreach TEST, $(REGRESSIONS), $(MAKE) -C test_cases/$(TEST) regression;)
+	$(foreach TEST, $(REGRESSIONS), $(MAKE) -C test_cases/$(TEST) WAVES=1 regression;)

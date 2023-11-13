@@ -37,9 +37,11 @@ class TestMonitor(BusMonitor):
 
     async def _monitor_recv(self):
         clkedge = RisingEdge(self.clock)
+        cocotb.log.info("monitor_recv started")
         while True:
             await clkedge
             if self.bus.valid.value:
+                cocotb.log.info(f"Valid seen {self.bank}")
                 self._recv(int(self.bus.data))
 
     def _get_result(self, transaction):

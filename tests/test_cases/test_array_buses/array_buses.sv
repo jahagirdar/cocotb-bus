@@ -16,6 +16,12 @@ module array_buses
       tmp_valid[0] = 1'b0;
       tmp_valid[1] = 1'b0;
    end
+initial begin
+	$dumpfile("waves.vcd");
+	$dumpvars(0,clk, in_data[0], in_data[1] , in_valid[0],in_valid[1] , out_data[0], out_data[1] , out_valid[0], out_valid[1]);
+	//$dumpvars;
+end
+
 
    always @(posedge clk) begin
       tmp_data[0] <= in_data[0];
